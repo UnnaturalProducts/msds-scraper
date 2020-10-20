@@ -9,7 +9,8 @@ setup(
         "selenium==3.141.0",
         "urllib3==1.25.8",
         "pytest==5.4.2",
-        "pandas"
+        "pandas",
+        "tqdm"
     ], entry_points={
         'console_scripts': [
             'msds_scraper = msds_scraper.__main__:main',
