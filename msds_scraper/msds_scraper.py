@@ -1,18 +1,15 @@
 from selenium import webdriver
 from selenium.webdriver import Chrome
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-
 from time import sleep
-from IPython import embed
 import requests
-import sys
 import os
-
 import pandas as pd
+from tqdm import tqdm
+from concurrent.futures import ThreadPoolExecutor,as_completed
+import argparse
 
 #BASEPATH = "/mnt/storage/InSync/TeamDrives/Team Drive/Operational/Lab Safety"
 BASEPATH = "/Volumes/GoogleDrive/Shared drives/UNP Core/Operational/Lab Safety/"
@@ -65,9 +62,6 @@ def get_current_msds_casnos(path):
     return casnos
 
 if __name__ == "__main__":
-    from tqdm import tqdm
-    from concurrent.futures import ThreadPoolExecutor,as_completed
-    import argparse
 
     parser = argparse.ArgumentParser()
     parser.add_argument("input",help="Inventory excel file")
