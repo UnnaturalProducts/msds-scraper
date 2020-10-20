@@ -1,3 +1,12 @@
+"""
+This script scrapes the fishersci website for material saftey datasheets (msds).
+
+It inputs a .xlsx file with a 'Substance CAS' column and checks an already exisiting 
+msds directory for missing material datasheets. If any missing msds's are found, it writes
+the .pdfs to the specified msds directory.
+
+It also creates a log file 'SCRAPE_ERRORS.txt' in the same directory the script is executed.
+"""
 from selenium import webdriver
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
@@ -10,6 +19,7 @@ import pandas as pd
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor,as_completed
 import argparse
+import sys
 
 #BASEPATH = "/mnt/storage/InSync/TeamDrives/Team Drive/Operational/Lab Safety"
 BASEPATH = "/Volumes/GoogleDrive/Shared drives/UNP Core/Operational/Lab Safety/"
@@ -53,6 +63,7 @@ def get_msds(cas):
         finally:
             browser.quit()
 
+
 def get_current_msds_casnos(path):
     pdfs = [sd.name for sd in os.scandir(path) if sd.name.lower().endswith('.pdf')]
     casnos = [
@@ -61,22 +72,35 @@ def get_current_msds_casnos(path):
         ]
     return casnos
 
-if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument("input",help="Inventory excel file")
+def parse_args():
+
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+
+    parser.add_argument("input", help="File path to Inventory excel file")
+    parser.add_argument("msds_directory", help="File path to directory of stored material saftey data sheets 'cas#'.pdf")
     parser.add_argument("-s","--single_thread",help='single threaded mode (for debugging)',action='store_true')
-    args = parser.parse_args()
+    return parser.parse_args()
+    
+def main():    
+    
+    args = parse_args()
 
-    df = pd.read_excel(os.path.join(BASEPATH,args.input))
+    df = pd.read_excel(
+        args.input
+    )
     
     casnos = set(df['Substance CAS'].values)
-    known_casnos = set(get_current_msds_casnos(os.path.join(BASEPATH,"msds")))
-
+    known_casnos = set(
+        get_current_msds_casnos(args.msds_directory)
+    )
     new_casnos = list((casnos-known_casnos)) #set math
     new_casnos = [cas for cas in new_casnos if pd.notna(cas)]
+    
     with open("SCRAPE_ERRORS.txt",'w') as log:
-
         if args.single_thread:
             for cas in tqdm(new_casnos):
                 res = get_msds(cas)
@@ -96,6 +120,6 @@ if __name__ == "__main__":
                         print(res,file=log)
                         pbar.write(f"bad cas: {res}")   
                     pbar.update()
-        
 
-
+if __name__ == "__main__":
+    sys.exit(main())
