@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# log output from cli
+SCRAPE_ERRORS.txt
 # C extensions
 *.so
 

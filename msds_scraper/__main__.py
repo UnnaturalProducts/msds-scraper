@@ -7,8 +7,8 @@ the .pdfs to the specified msds directory.
 
 It also creates a log file 'SCRAPE_ERRORS.txt' in the same directory the script is executed.
 """
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
-from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -17,25 +17,21 @@ import requests
 import os
 import pandas as pd
 from tqdm import tqdm
-from concurrent.futures import ThreadPoolExecutor,as_completed
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import argparse
 import sys
 
-#BASEPATH = "/mnt/storage/InSync/TeamDrives/Team Drive/Operational/Lab Safety"
-BASEPATH = "/Volumes/GoogleDrive/Shared drives/UNP Core/Operational/Lab Safety/"
-BASEPATH = "./"
-
-def get_msds(cas):
+def get_msds(cas, msds_directory):
         user_agent = {'User-agent': 'Mozilla/5.0'}
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
         options.add_experimental_option("prefs", {
-        "download.default_directory": "/home/cpye/Desktop/msds/",
+        #"download.default_directory": "/home/cpye/Desktop/msds/",
         "download.prompt_for_download": False,
         "download.directory_upgrade": True,
         "safebrowsing.enabled": True
         })
-        browser = Chrome(options=options)
+        browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
         browser.get('https://www.fishersci.com/us/en/catalog/search/sdshome.html')
         sleep(0.5)
@@ -55,7 +51,7 @@ def get_msds(cas):
             url = first_result.get_attribute("href")
             r = requests.get(url,allow_redirects=True,headers=user_agent)
             pdf = r.content
-            with open(os.path.join(BASEPATH,f"msds/{cas}.pdf"),'wb') as fout:
+            with open(os.path.join(msds_directory,f"{cas}.pdf"),'wb') as fout:
                 fout.write(pdf)
         except:
             # raise
@@ -103,7 +99,7 @@ def main():
     with open("SCRAPE_ERRORS.txt",'w') as log:
         if args.single_thread:
             for cas in tqdm(new_casnos):
-                res = get_msds(cas)
+                res = get_msds(cas, args.msds_directory)
                 if res is not None:
                     print(res,file=log)
                     tqdm.write(f"bad cas: {res}")
@@ -111,13 +107,13 @@ def main():
             with ThreadPoolExecutor(max_workers=20) as ex:
                 futs = {}
                 for cas in new_casnos:
-                    fut = ex.submit(get_msds,cas)
+                    fut = ex.submit(get_msds, cas, args.msds_directory)
                     futs[fut] = cas
                 pbar = tqdm(total=len(futs))
                 for fut in as_completed(futs):
                     res = fut.result()
                     if res is not None:
-                        print(res,file=log)
+                        print(res, file=log)
                         pbar.write(f"bad cas: {res}")   
                     pbar.update()
 

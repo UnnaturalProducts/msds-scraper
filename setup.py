@@ -8,8 +8,10 @@ setup(
     install_requires=[
         "selenium==3.141.0",
         "urllib3==1.25.8",
+        "xlrd >= 1.0.0",
         "pytest==5.4.2",
         "pandas",
+        "webdriver-manager",
         "tqdm"
     ], entry_points={
         'console_scripts': [
