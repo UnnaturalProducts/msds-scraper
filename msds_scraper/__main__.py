@@ -31,7 +31,7 @@ def get_msds(cas, msds_directory):
         "download.directory_upgrade": True,
         "safebrowsing.enabled": True
         })
-        browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+        browser = webdriver.Chrome(ChromeDriverManager(log_level=0).install(), options=options)
 
         browser.get('https://www.fishersci.com/us/en/catalog/search/sdshome.html')
         sleep(0.5)
@@ -42,6 +42,7 @@ def get_msds(cas, msds_directory):
         search_button = browser.find_element_by_css_selector("#msdsSearch")
         search_button.submit()
         sleep(2.5)
+
         try:
             selector = "#main > div.search_results.row > div > table > tbody > tr > td.catalog_data > div > div > div.catalog_num > div > div > div:nth-child(1) > a"
             element = WebDriverWait(browser, 10).until(
@@ -69,7 +70,7 @@ def get_current_msds_casnos(path):
     return casnos
 
 
-def parse_args():
+def parse_args(args):
 
     parser = argparse.ArgumentParser(
         description=__doc__,
@@ -78,13 +79,15 @@ def parse_args():
 
     parser.add_argument("input", help="File path to Inventory excel file")
     parser.add_argument("msds_directory", help="File path to directory of stored material saftey data sheets 'cas#'.pdf")
-    parser.add_argument("-s","--single_thread",help='single threaded mode (for debugging)',action='store_true')
-    return parser.parse_args()
-    
-def main():    
-    
-    args = parse_args()
+    parser.add_argument("--bad_cas_output", default="./bad-cas.csv", help="File path output of text file containing cas numbers which failed to return a msds.")
 
+    parser.add_argument("-s","--single_thread",help='single threaded mode (for debugging)',action='store_true')
+    return parser.parse_args(args)
+    
+
+def main(args=None):    
+    
+    args = parse_args(args)
     df = pd.read_excel(
         args.input
     )
@@ -95,27 +98,31 @@ def main():
     )
     new_casnos = list((casnos-known_casnos)) #set math
     new_casnos = [cas for cas in new_casnos if pd.notna(cas)]
+    bad_casses = []
     
-    with open("SCRAPE_ERRORS.txt",'w') as log:
-        if args.single_thread:
-            for cas in tqdm(new_casnos):
-                res = get_msds(cas, args.msds_directory)
-                if res is not None:
-                    print(res,file=log)
-                    tqdm.write(f"bad cas: {res}")
-        else:
-            with ThreadPoolExecutor(max_workers=20) as ex:
-                futs = {}
-                for cas in new_casnos:
-                    fut = ex.submit(get_msds, cas, args.msds_directory)
-                    futs[fut] = cas
-                pbar = tqdm(total=len(futs))
-                for fut in as_completed(futs):
-                    res = fut.result()
-                    if res is not None:
-                        print(res, file=log)
-                        pbar.write(f"bad cas: {res}")   
-                    pbar.update()
+    if args.single_thread:
+        for cas in tqdm(new_casnos):
+            cas = get_msds(cas, args.msds_directory)
+            if cas is not None:
+                bad_casses.append(cas)
+                
+    else:
+        with ThreadPoolExecutor(max_workers=20) as ex:
+            futs = {}
+            for cas in new_casnos:
+                fut = ex.submit(get_msds, cas, args.msds_directory)
+                futs[fut] = cas
+            
+            pbar = tqdm(total=len(futs))
+            for fut in as_completed(futs):
+                cas = fut.result()
+                if cas is not None:
+                    bad_casses.append(cas)
+                pbar.update()
 
+    with open(args.bad_cas_output, "w") as bad_cas_out:
+        for bad_cas in bad_casses:
+            print(bad_cas, file=bad_cas_out)
+        
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(main(sys.argv[1:]))
