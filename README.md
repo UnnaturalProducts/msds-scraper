@@ -4,8 +4,8 @@ Python + Selenium for scraping material saftey datasheets from fishersci.com
 ## Install
 Make and add to an anaconda environment: 
 ```
-conda create --name msds_scaper python
-conda activae msds_scaper
+conda create --name msds_scraper python
+conda activate msds_scraper
 
 $CONDA_PREFIX/bin/pip install git+https://github.com/UnnaturalProducts/msds-scraper.git
 ```
@@ -31,3 +31,5 @@ Or use this template
 ```
 msds_scraper /path/to/your/UNP_Inventory.xlsx /path/to/your/dirctory/with/msds.pdfs
 ```
+
+There are example files in the `./msds_scraper/tests/data` directory.
