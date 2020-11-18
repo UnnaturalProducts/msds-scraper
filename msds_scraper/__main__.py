@@ -5,7 +5,8 @@ It inputs a .xlsx file with a 'Substance CAS' column and checks an already exisi
 msds directory for missing material datasheets. If any missing msds's are found, it writes
 the .pdfs to the specified msds directory.
 
-It also creates a log file 'SCRAPE_ERRORS.txt' in the same directory the script is executed.
+It also creates a log file 'bad-cas.csv' in the same directory the script is executed, or you
+can specify a path and filename for the log file.
 """
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
