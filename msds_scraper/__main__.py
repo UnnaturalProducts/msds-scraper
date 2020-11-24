@@ -33,7 +33,9 @@ def get_msds(cas, msds_directory):
         "safebrowsing.enabled": True
         })
         browser = webdriver.Chrome(ChromeDriverManager(log_level=0).install(), options=options)
-
+        browser.get(f"https://www.fishersci.com/us/en/catalog/search/sds?selectLang=EN&msdsKeyword={cas}")
+        """
+        # Old method uses UI to search, new method directly uses url to jump to the page.
         browser.get('https://www.fishersci.com/us/en/catalog/search/sdshome.html')
         sleep(0.5)
         search_form = browser.find_element_by_css_selector("#qa_msdsKeyword")
@@ -43,7 +45,7 @@ def get_msds(cas, msds_directory):
         search_button = browser.find_element_by_css_selector("#msdsSearch")
         search_button.submit()
         sleep(2.5)
-
+        """
         try:
             selector = "#main > div.search_results.row > div > table > tbody > tr > td.catalog_data > div > div > div.catalog_num > div > div > div:nth-child(1) > a"
             element = WebDriverWait(browser, 10).until(
@@ -51,7 +53,7 @@ def get_msds(cas, msds_directory):
             )
             first_result = browser.find_element_by_css_selector(selector)
             url = first_result.get_attribute("href")
-            r = requests.get(url,allow_redirects=True,headers=user_agent)
+            r = requests.get(url, allow_redirects=True, headers=user_agent)
             pdf = r.content
             with open(os.path.join(msds_directory,f"{cas}.pdf"),'wb') as fout:
                 fout.write(pdf)
