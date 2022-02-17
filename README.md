@@ -1,16 +1,33 @@
 # msds-scraper
 Python + Selenium for scraping material saftey datasheets from fishersci.com
 
-## Install
-Make and add to an anaconda environment: 
+### Install on windows:
+Check to see if you have python installed:
 ```
-conda create --name msds_scraper python
-conda activate msds_scraper
-
-$CONDA_PREFIX/bin/pip install git+https://github.com/UnnaturalProducts/msds-scraper.git
+py --version
+```
+Check to see if you've got pip installed
+```
+py -m ensurepip --default-pip
+```
+If the above doesn't work [download this.](https://bootstrap.pypa.io/get-pip.py) And run that file
+with 
+```
+py ./get-pip.py
+```
+Once you've got pip make sure things are up to date with
+```
+py -m pip install --upgrade pip setuptools wheel
+```
+Now you're ready to install the msds scraper on your machine.
+```
+py -m pip install msds_scrapper@git+ssh://git@github.com/UnnaturalProducts/mzml-adapter.git
 ```
 
-Or make your own lil virtual env and carry forward from there:
+### On Ubuntu or mac:  
+You'l need git and optoinally virtualenv or the like.
+make your own lil virtual env and carry forward from there:
+
 ```
 git clone https://github.com/UnnaturalProducts/msds-scraper.git
 cd msds-scraper
