@@ -1,12 +1,16 @@
 """
 This script scrapes the fishersci website for material saftey datasheets (msds).
 
-It inputs a .xlsx file with a 'Substance CAS' column and checks an already exisiting 
-msds directory for missing material datasheets. If any missing msds's are found, it writes
-the .pdfs to the specified msds directory.
+It inputs a .xlsx file which at a minimum has a named 'Substance CAS', and a path to a directory of already obtained
+material datasheets, 'msds directory'. For each substance cas it checks for an already exisiting
+material datasheets in the msds directory. If it doesn't find an existing material datasheet it checks the fishsci website and attempts
+to download the .pdf to the given msds directory.
 
-It also creates a log file 'bad-cas.csv' in the same directory the script is executed, or you
-can specify a path and filename for the log file.
+It also creates a log file 'bad-cas.csv' which warns about any cas's where it couldn't find a file or  in the same directory the
+script is executed, or you can specify a path and filename for the log file.
+
+Example:
+    msds_scraper /path/to/your/UNP_Inventory.xlsx /path/to/your/dirctory/with/msds.pdfs
 """
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver

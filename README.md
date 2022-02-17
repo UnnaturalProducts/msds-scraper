@@ -1,6 +1,17 @@
 # msds-scraper
 Python + Selenium for scraping material saftey datasheets from fishersci.com
 
+This repository contains a script that inputs a .xlsx file which at a minimum has a named 'Substance CAS'. The script also takes the 
+a path to a directory of already obtained material datasheets, 'msds directory'. For each substance cas it checks for an already exisiting
+material datasheets in the msds directory. If it doesn't find an existing material datasheet it checks the fishsci website and attempts
+to download the .pdf to the given msds directory.
+
+It also creates a log file 'bad-cas.csv' which warns about any cas's where it couldn't find a file or  in the same directory the 
+script is executed, or you can specify a path and filename for the log file.
+
+Example:
+```msds_scraper /path/to/your/UNP_Inventory.xlsx /path/to/your/dirctory/with/msds.pdfs```
+
 ### Install on windows:
 
 Open up the command prompt and check to see if you have python installed:
