@@ -12,7 +12,8 @@ setup(
         "pytest==5.4.2",
         "pandas",
         "webdriver-manager",
-        "tqdm"
+        "tqdm",
+        "openpyxl"
     ], entry_points={
         'console_scripts': [
             'msds_scraper = msds_scraper.__main__:main',
