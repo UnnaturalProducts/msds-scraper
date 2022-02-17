@@ -2,11 +2,15 @@
 Python + Selenium for scraping material saftey datasheets from fishersci.com
 
 ### Install on windows:
-Check to see if you have python installed:
+
+Open up the command prompt and check to see if you have python installed:
+
 ```
 py --version
 ```
-Check to see if you've got pip installed
+If you don't have python installed, install python 3.8.0 onto your machine. Select the 
+
+Next, check to see if you've got pip installed
 ```
 py -m ensurepip --default-pip
 ```
