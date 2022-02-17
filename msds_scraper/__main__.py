@@ -84,7 +84,7 @@ def parse_args(args):
     parser.add_argument("msds_directory", help="File path to directory of stored material saftey data sheets 'cas#'.pdf")
     parser.add_argument("--bad_cas_output", default="./bad-cas.csv", help="File path output of text file containing cas numbers which failed to return a msds.")
 
-    parser.add_argument("-s","--single_thread",help='single threaded mode (for debugging)',action='store_true')
+    parser.add_argument("-m","--multi_thread",help='Multithread (may not work on windows)', action='store_true')
     return parser.parse_args(args)
     
 
@@ -103,7 +103,7 @@ def main(args=None):
     new_casnos = [cas for cas in new_casnos if pd.notna(cas)]
     bad_casses = []
     
-    if args.single_thread:
+    if not args.multi_thread:
         for cas in tqdm(new_casnos):
             cas = get_msds(cas, args.msds_directory)
             if cas is not None:
@@ -115,7 +115,7 @@ def main(args=None):
             for cas in new_casnos:
                 fut = ex.submit(get_msds, cas, args.msds_directory)
                 futs[fut] = cas
-            
+
             pbar = tqdm(total=len(futs))
             for fut in as_completed(futs):
                 cas = fut.result()
