@@ -22,10 +22,10 @@ py -m pip install --upgrade pip setuptools wheel
 Now you're ready to install the msds scraper on your machine.
 ```
 
-py -m pip install msds_scrapper@git+https://github.com/UnnaturalProducts/mzml-adapter.git
+py -m pip install msds_scrapper@git+https://github.com/UnnaturalProducts/msds-scraper.git
 ```
 
-### On Ubuntu or mac:  
+### Install on Ubuntu or mac:  
 You'l need git and optoinally virtualenv or the like.
 make your own lil virtual env and carry forward from there:
 
