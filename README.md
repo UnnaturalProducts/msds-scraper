@@ -19,7 +19,7 @@ Open up the command prompt and check to see if you have python installed:
 ```
 py --version
 ```
-If you don't have python installed, install python 3.8.0 onto your machine. Select the 
+If you don't have python installed, install python 3.8.0 onto your machine. Select the 'add to path' option.
 
 Next, check to see if you've got pip installed
 ```
