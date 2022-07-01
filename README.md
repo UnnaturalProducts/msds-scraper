@@ -1,4 +1,5 @@
 # msds-scraper
+
 Python + Selenium for scraping material saftey datasheets from fishersci.com
 
 This repository contains a script that inputs a .xlsx file which at a minimum has a named 'Substance CAS'. The script also takes the 
@@ -10,7 +11,10 @@ It also creates a log file 'bad-cas.csv' which warns about any cas's where it co
 script is executed, or you can specify a path and filename for the log file.
 
 Example:
-```msds_scraper /path/to/your/UNP_Inventory.xlsx /path/to/your/dirctory/with/msds.pdfs```
+
+```
+msds_scraper /path/to/your/UNP_Inventory.xlsx /path/to/your/dirctory/with/msds.pdfs
+```
 
 ### Install on windows:
 
@@ -19,27 +23,36 @@ Open up the command prompt and check to see if you have python installed:
 ```
 py --version
 ```
+
 If you don't have python installed, install python 3.8.0 onto your machine. Select the 'add to path' option.
 
 Next, check to see if you've got pip installed
+
 ```
 py -m ensurepip --default-pip
+
 ```
 If the above doesn't work [download this.](https://bootstrap.pypa.io/get-pip.py) And run that file
-with 
+with
+
 ```
 py ./get-pip.py
 ```
+
 Once you've got pip make sure things are up to date with
+
 ```
 py -m pip install --upgrade pip setuptools wheel
 ```
+
 Now you're ready to install the msds scraper on your machine.
+
 ```
 py -m pip install msds_scraper@git+https://github.com/UnnaturalProducts/msds-scraper.git
 ```
 
-### Install on Ubuntu or mac:  
+### Install on Ubuntu or mac:
+
 You'l need git and optoinally virtualenv or the like.
 make your own lil virtual env and carry forward from there:
 
@@ -56,10 +69,13 @@ pip install .
 Once you've followed the installation instructions the cli will be available in the environment.
 
 Check out the documentation with
+
 ```
 msds_scraper --help
 ```
+
 Or use this template
+
 ```
 msds_scraper /path/to/your/UNP_Inventory.xlsx /path/to/your/dirctory/with/msds.pdfs
 ```
