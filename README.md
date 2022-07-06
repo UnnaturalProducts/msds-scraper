@@ -1,83 +1,47 @@
 # msds-scraper
 
-Python + Selenium for scraping material saftey datasheets from fishersci.com
+Tool for scraping material saftey datasheets (currently only from fishersci.com)
 
-This repository contains a script that inputs a .xlsx file which at a minimum has a named 'Substance CAS'. The script also takes the 
-a path to a directory of already obtained material datasheets, 'msds directory'. For each substance cas it checks for an already exisiting
-material datasheets in the msds directory. If it doesn't find an existing material datasheet it checks the fishsci website and attempts
-to download the .pdf to the given msds directory.
+This repository contains a script that inputs a .xlsx file which at a minimum has a named 'Substance CAS'. 
+The script also takes the a path to a directory of already obtained material datasheets, `msds_directory`. 
+For each substance CAS it checks for an already exisiting material datasheets in the msds directory. 
+If it doesn't find an existing material datasheet it checks the fishsci website and attempts
+to download the .pdf to the given directory.
 
-It also creates a log file 'bad-cas.csv' which warns about any cas's where it couldn't find a file or  in the same directory the 
+It also creates a log file `./bad-cas.csv` which warns about any CAS number where it couldn't find a file in the same directory the 
 script is executed, or you can specify a path and filename for the log file.
 
 Example:
 
-```
-msds_scraper /path/to/your/UNP_Inventory.xlsx /path/to/your/dirctory/with/msds.pdfs
-```
-
-### Install on windows:
-
-Open up the command prompt and check to see if you have python installed:
-
-```
-py --version
+```bash
+msds-scraper /path/to/UNP_Inventory.xlsx /path/to/msds_directory/msds.pdfs
 ```
 
-If you don't have python installed, install python 3.8.0 onto your machine. Select the 'add to path' option.
+### Install (developers):
 
-Next, check to see if you've got pip installed
+We no longer have "user" instructions as this tool has been redesigned to fit into an automated task on AWS.
 
-```
-py -m ensurepip --default-pip
+Using Python Poetry:
 
-```
-If the above doesn't work [download this.](https://bootstrap.pypa.io/get-pip.py) And run that file
-with
-
-```
-py ./get-pip.py
-```
-
-Once you've got pip make sure things are up to date with
-
-```
-py -m pip install --upgrade pip setuptools wheel
-```
-
-Now you're ready to install the msds scraper on your machine.
-
-```
-py -m pip install msds_scraper@git+https://github.com/UnnaturalProducts/msds-scraper.git
-```
-
-### Install on Ubuntu or mac:
-
-You'l need git and optoinally virtualenv or the like.
-make your own lil virtual env and carry forward from there:
-
-```
+```bash
 git clone https://github.com/UnnaturalProducts/msds-scraper.git
 cd msds-scraper
-virtualenv -p python env
-source env/bin/activate
-pip install .
+poetry install
+poetry shell
 ```
 
-## CLI
+### CLI
 
-Once you've followed the installation instructions the cli will be available in the environment.
+Check out the complete documentation with
 
-Check out the documentation with
-
-```
-msds_scraper --help
+```bash
+msds-scraper --help
 ```
 
 Or use this template
 
-```
-msds_scraper /path/to/your/UNP_Inventory.xlsx /path/to/your/dirctory/with/msds.pdfs
+```bash
+msds-scraper /path/to/your/UNP_Inventory.xlsx /path/to/your/dirctory/with/msds.pdfs
 ```
 
-There are example files in the `./msds_scraper/tests/data` directory.
+There are example files in the `./msds-scraper/tests/data` directory.
