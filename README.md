@@ -44,4 +44,4 @@ Or use this template
 msds-scraper /path/to/your/UNP_Inventory.xlsx /path/to/your/dirctory/with/msds.pdfs
 ```
 
-There are example files in the `./msds-scraper/tests/data` directory.
+There are example files in the `./tests/data` directory.
