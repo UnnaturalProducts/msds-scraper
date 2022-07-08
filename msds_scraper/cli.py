@@ -1,12 +1,20 @@
 from pathlib import Path
-from typing import Optional
+from typing import Callable, Optional
 
 import typer
 from joblib import Parallel, delayed
 
-from msds_scraper import fischer, io
+from msds_scraper import combiblocks, fischer, io
 
 app = typer.Typer()
+
+
+def _try_get_cas(method: Callable, cas: str, output_dir: Path) -> bool:
+    try:
+        method(cas, output_dir)
+        return True
+    except AssertionError:
+        return False
 
 
 def get_cas(cas: str, ouput_dir: Path) -> Optional[str]:
@@ -15,10 +23,15 @@ def get_cas(cas: str, ouput_dir: Path) -> Optional[str]:
 
     Returns CAS is retrieval failed
     """
-    try:
-        fischer.get_cas_pdf(cas, ouput_dir)
-    except AssertionError:
-        return cas
+    result = False
+    # if result is True, retrieval succeeded
+    methods = (fischer.get_cas_pdf, combiblocks.get_cas_pdf)
+    for get_method in methods:
+        result = _try_get_cas(get_method, cas, ouput_dir)
+        if result is True:
+            return
+    # return cas if none of the above succeeded
+    return cas
 
 
 @app.command()
