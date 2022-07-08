@@ -1,26 +1,12 @@
-# https://github.com/kiwicom/pytest-recording
 from http import HTTPStatus
 from pathlib import Path
 import magic
 
 import pytest
-import requests
 from msds_scraper import fischer
 
 GOOD_CAS = "50-00-0"
 BAD_CAS = "0000X-00-00"
-
-
-def test_is_pdf_content():
-    r = requests.Response()
-    r.headers["content-type"] = "application/pdf"
-    assert fischer.is_pdf_content(r)
-
-
-def test_not_is_pdf_content():
-    r = requests.Response()
-    r.headers["content-type"] = "text/html"
-    assert not fischer.is_pdf_content(r)
 
 
 @pytest.mark.vcr

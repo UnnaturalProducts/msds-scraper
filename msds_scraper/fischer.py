@@ -4,13 +4,11 @@ from typing import Dict, Optional
 import bs4
 import requests
 
+from .utils import is_pdf_content
+
 FISCHER_BASE = "https://www.fishersci.com"
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
 DEFAULT_HEADERS = {"User-Agent": USER_AGENT}
-
-
-def is_pdf_content(r: requests.Response) -> bool:
-    return r.headers["content-type"] == "application/pdf"
 
 
 def _get_fischer(path: str, headers: Dict = DEFAULT_HEADERS) -> requests.Response:
