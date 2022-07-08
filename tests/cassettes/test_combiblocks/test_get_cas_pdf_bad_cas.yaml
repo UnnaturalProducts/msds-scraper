@@ -1,0 +1,202 @@
+interactions:
+- request:
+    body: Input=0000X-00-00&Page_Num=1
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '28'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/70.0.3538.77 Safari/537.36
+    method: POST
+    uri: https://www.combi-blocks.com/cgi-bin/find.cgi
+  response:
+    body:
+      string: "<!DOCTYPE html>\n<HTML lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\">\n
+        \       <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n        <META
+        NAME=\"Description\" content=\"Supplier of boronic acids, carboxylic acids,
+        imidazoles, thiazoles, azoles, indoles, oxindoles, pyridines, heterocycles,
+        bormides, fluoro compounds, amines, aldehydes, isoquinolines, nitro compounds,
+        trifluoroborates, and other organics and fine chemicals.\">\n        <META
+        NAME=\"Keywords\" content=\"boronic acids, carboxylic acids, imidazoles, thiazoles,
+        azoles, indoles, oxindoles, pyridines, heterocycles, bormides, fluoro compounds,
+        amines, aldehydes, isoquinolines, nitro compounds, trifluoroborates, combinatorial
+        building blocks, organics, fine chemicals.\">\n        <meta name=\"author\"
+        content=\"\">\n<TITLE>Combi-Blocks\n        </TITLE>\n        <link rel=\"icon\"
+        type=\"image/gif\" href=\"https://www.combi-blocks.com/favicon.gif\">\n        <script
+        type=\"text/javascript\">\n        <!--\nfunction submitenter(myfield,e)\n{\n\tvar
+        keycode;\n\tif (window.event) keycode = window.event.keyCode;\n\telse if (e)
+        keycode = e.which;\n\telse return true;\n\n\tif (keycode == 13)\n   \t{\n
+        \  \t\tmyfield.form.submit();\n   \t\treturn false;\n   \t}\n\telse\n   \treturn
+        true;\n}\n\n-->\n    </script>\n\n        <style type=\"text/css\">\n            .no_under_line\n
+        \           {\n            text-decoration: none;\n            }\n\n</style>\n
+        \       <link href=\"//www.combi-blocks.com/css/bootstrap/css/bootstrap.css\"
+        rel=\"stylesheet\" type=\"text/css\">\n        <link href=\"//www.combi-blocks.com/css/main.css\"
+        rel=\"stylesheet\" type=\"text/css\">\n    </head>\n    <body>\n        <div
+        class=\"\" id=\"header\">\n            <a href=\"https://www.combi-blocks.com/\"><img
+        src=\"https://www.combi-blocks.com/images/logo.png\" id=\"banner\" /></a>\n
+        \           <div id=\"search\">\n              <form class=\"text-center\"
+        role=\"search\" id=\"searchbar\" action=\"https://www.combi-blocks.com/cgi-bin/find.cgi\"
+        method=\"POST\">\n                  <div class=\"input-group\" id=\"search-form\">\n
+        \                     <input type=\"text\" class=\"form-control\" placeholder=\"Search\"
+        id=\"search-input\" name=\"Input\">\n                      <span class=\"input-group-btn\"><input
+        type=\"submit\" class=\"btn\" value=\"Search\"> </span>\n                  </div>\n
+        \             </form>\n            </div>\n        </div>\n        <nav class=\"navbar
+        navbar-default\" role=\"navigation\">\n            <div class=\"container-fluid\"
+        id=\"nav\">\n                <div class=\"navbar-header\">\n                    <a
+        class=\"navbar-brand\" href=\"https://www.combi-blocks.com\"><span class=\"glyphicon
+        glyphicon-home\"></span><br></a>\n                </div>\n                <ul
+        class=\"nav navbar-nav\" style=\"display: block;\">\n                    <li
+        class=\"dropdown\" \"\">\n                        <a class=\"dropdown-toggle\"
+        data-toggle=\"dropdown\">Products&nbsp;<b class=\"caret\"></b></a>\n                        <ul
+        class=\"dropdown-menu multi-column columns-3\" id=\"product-drop\">\n                            <div
+        class=\"row\" \"\">\n                                <div class=\"col-sm-4\"
+        \"\">\n                                    <ul class=\"multi-column-dropdown\">\n
+        \                                       <li>\n                                            <a
+        href=\"https://www.combi-blocks.com/blocks/NC1.htm\">New & Rare (No CAS)</a>\n
+        \                                       </li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/blocks/AL1.htm\">Aldehydes</a>\n
+        \                                       </li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/blocks/AM1.htm\">Amines</a>\n
+        \                                       </li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/blocks/AA1.htm\">Amino
+        Acids</a>\n                                        </li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/blocks/AN1.htm\">Anilines</a>\n
+        \                                       </li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/blocks/BB1.htm\">Boronic
+        Acids</a>\n                                        </li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/blocks/BR1.htm\">Bromides</a>\n
+        \                                       </li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/blocks/CA1.htm\">Carboxes</a>\n
+        \                                       </li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/blocks/CT1.htm\">Catalysts</a>\n
+        \                                       </li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/blocks/CL1.htm\">Chiral
+        Compounds</a>\n                                        </li>\n                                    </ul>\n
+        \                               </div>\n                                <div
+        class=\"col-sm-4\">\n                                    <ul class=\"multi-column-dropdown\">\n
+        \                                       <li>\n                                            <a
+        href=\"https://www.combi-blocks.com/blocks/DD1.htm\">Deuterated</a>\n                                        </li>\n
+        \                                       <li>\n                                            <a
+        href=\"https://www.combi-blocks.com/blocks/FL1.htm\">Fluorides</a>\n                                        </li>\n
+        \                                       <li>\n                                            <a
+        href=\"https://www.combi-blocks.com/blocks/IM1.htm\">Imidazoles</a>\n                                        </li>\n
+        \                                       <li>\n                                            <a
+        href=\"https://www.combi-blocks.com/blocks/IN1.htm\">Indoles and Oxindoles</a>\n
+        \                                       </li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/blocks/ID1.htm\">Iodos</a>\n
+        \                                       </li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/blocks/NO1.htm\">Nitro
+        Compounds</a>\n                                        </li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/blocks/OX1.htm\">Oxazoles</a>\n
+        \                                       </li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/blocks/PE1.htm\">Peg
+        Linkers</a>\n\t\t\t\t\t</li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/blocks/PO1.htm\">Phenols</a>\n
+        \                                       </li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/blocks/PI1.htm\">Piperidines</a>\n
+        \                                       </li>\n                                    </ul>\n
+        \                               </div>\n                                <div
+        class=\"col-sm-4\">\n                                    <ul class=\"multi-column-dropdown\">\n
+        \                                       <li>\n                                            <a
+        href=\"https://www.combi-blocks.com/blocks/PY1.htm\">Pyridines</a>\n                                        </li>\n
+        \                                       <li>\n                                            <a
+        href=\"https://www.combi-blocks.com/blocks/PM1.htm\">Pyrimidines</a>\n                                        </li>\n
+        \                                       <li>\n                                            <a
+        href=\"https://www.combi-blocks.com/blocks/IQ1.htm\">Quinolines</a>\n                                        </li>\n
+        \                                       <li>\n                                            <a
+        href=\"https://www.combi-blocks.com/blocks/SU1.htm\">Sulfonamides</a>\n                                        </li>\n
+        \                                       <li>\n                                            <a
+        href=\"https://www.combi-blocks.com/blocks/TH1.htm\">Thiazoles</a>\n                                        </li>\n
+        \                                       <li>\n                                            <a
+        href=\"https://www.combi-blocks.com/blocks/AR1.htm\">Trifluoroborates</a>\n
+        \                                       </li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/blocks/AZ1.htm\">Other
+        Azoles</a>\n                                        </li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/blocks/HE1.htm\">Other
+        Heterocycles</a>\n                                        </li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/blocks/OT1.htm\">Other
+        Building Blocks</a>\n                                        </li>\n                                        <li>\n
+        \                                           <a href=\"https://www.combi-blocks.com/cgi-bin/find.cgi?onsale\">On
+        Sale</a>\n                                        </li>\n                                    </ul>\n
+        \                               </div>\n                            </div>\n
+        \                       </ul>\n                    </li>\n                    <li
+        style=\"display: block;\">\n                        <a href=\"https://www.combi-blocks.com/others/download.htm\"
+        style=\"display: block;\">Download Docs</a>\n                    </li>\n                    <li
+        class=\"dropdown\" \"\">\n                        <a class=\"dropdown-toggle\"
+        data-toggle=\"dropdown\">Search&nbsp;<b class=\"caret\"></b></a>\n                        <ul
+        class=\"dropdown-menu\">\n                            <li>\n                                <a
+        href=\"https://www.combi-blocks.com/others/search.htm\">Search Keyword</a>\n
+        \                           </li>\n                            <li>\n                                <a
+        href=\"https://www.combi-blocks.com/others/st_search.htm\">Search Structure</a>\n
+        \                           </li>\n                        </ul>\n                    </li>\n
+        \                   <li class=\"dropdown\" \"\">\n                        <a
+        class=\"dropdown-toggle\" data-toggle=\"dropdown\">Info&nbsp;<b class=\"caret\"></b></a>\n
+        \                       <ul class=\"dropdown-menu\">\n                            <li>\n
+        \                               <a href=\"https://www.combi-blocks.com/others/order-info.htm\">Order
+        and Payment Info</a>\n                            </li>\n                            <li>\n
+        \                               <a href=\"https://www.combi-blocks.com/others/delivery-info.htm\">Delivery
+        Info</a>\n                            </li>\n                            <li>\n
+        \                               <a href=\"https://www.combi-blocks.com/others/terms.htm\">Terms
+        and Conditions</a>\n                            </li>\n                            <li>\n
+        \                               <a href=\"https://www.combi-blocks.com/others/contact.htm\">Contact
+        Us</a>\n                            </li>\n                        </ul>\n
+        \                   </li>\n                </ul>\n\n                <ul class=\"nav
+        navbar-nav navbar-right\" style=\"display: block;\"> \n                    <li>\n
+        \                       <a href=\"https://www.combi-blocks.com/cgi-bin/cbcart.cgi?MY_ACTION=show_cart\"><span
+        class=\"glyphicon glyphicon-shopping-cart\" style=\"display: inline-block;\"></span><br></a>\n
+        \                   </li>                     \n                    <li class=\"dropdown\"
+        \"\"> \n                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Account&nbsp;<b
+        class=\"caret\"></b></a> \n                        <ul class=\"dropdown-menu\">
+        \n                            <li>\n                                <a href=\"https://www.combi-blocks.com/cgi-bin/cbp.cgi?MY_ACTION=LOAD_LOGIN\">Login</a>\n
+        \                           </li>                             \n                            <li>\n
+        \                               <a href=\"https://www.combi-blocks.com/cgi-bin/cbp.cgi?MY_ACTION=LOAD_REGIST\">Register</a>\n
+        \                           </li>                             \n                            <li>\n
+        \                               <a href=\"https://www.combi-blocks.com/cgi-bin/cbp.cgi?MY_ACTION=LOAD_CHG_PWD\">Change
+        Password</a>\n                            </li>                             \n
+        \                           <li>\n                                <a href=\"https://www.combi-blocks.com/cgi-bin/cbp.cgi?MY_ACTION=LOGOFF\">Log
+        Out</a>\n                            </li>                             \n
+        \                       </ul>                         \n                    </li>
+        \                    \n                </ul>\n\n            </div>\n        </nav>\n\n<div
+        id=\"main\">\n<div id=\"content-full\">\n<div class=\"info-block\">\n<div
+        class=\"cb-content\">\n\n&nbsp;<p>\n<CENTER><B><FONT FACE=\"Black Chancery\"><FONT
+        COLOR=\"#990000\">\n<FONT SIZE=+2> Search Result </FONT></FONT></FONT></B>\n<br>\n</center>\n<p>\n<center>\n<FORM
+        ACTION=\"https://www.combi-blocks.com/cgi-bin/find.cgi\" METHOD=\"POST\">\nKeywords:
+        <INPUT Size=20 Name=\"Input\" value=\"0000X-00-00\"> &nbsp; &nbsp; \nPage:
+        <INPUT Size=4 Name=\"Page_Num\" value=\"1\">&nbsp; &nbsp; \n<INPUT TYPE=\"submit\"
+        VALUE=\"Search\">\n</center>\n\n<p><hr><p>\n\nFound <font color=990000> <b>
+        0 </b></font> items matching the words \"<b>0000X-00-00</b>\".<p>\n<b>Please
+        try to use a substring or some other key words.</b>\n</td></tr></table>\n</div>\n</div>\n</div>\n</div>\n</div>\n\n<div
+        class=\"\" id=\"footer\">\n\n    \xA9 1997-20122 Combi-Blocks Inc.\n\n    <br>\n\n
+        \   Phone: 1-858-635-8950 &nbsp; &nbsp;Fax: 1-858-635-8991 &nbsp; &nbsp;Email:
+        sales@combi-blocks.com\n\n</div>\n\n\n\n<!-- Bootstrap core JavaScript\n\n
+        ================================================== -->\n\n<!-- Placed at the
+        end of the document so the pages load faster -->\n\n    <script src=\"//www.combi-blocks.com/css/assets/js/jquery.min.js\"></script>\n\n
+        \   <script src=\"//www.combi-blocks.com/css/assets/js/main.js\"></script>\n\n
+        \   <script src=\"//www.combi-blocks.com/css/bootstrap/js/bootstrap.min.js\"></script>\n\n<!--
+        IE10 viewport hack for Surface/desktop Windows 8 bug -->\n\n    <script type=\"text/javascript\"
+        src=\"//www.combi-blocks.com/css/assets/js/ie10-viewport-bug-workaround.js\"></script>\n\n</body>\n\n"
+    headers:
+      Connection:
+      - Keep-Alive
+      Content-Type:
+      - text/html
+      Date:
+      - Fri, 08 Jul 2022 19:30:19 GMT
+      Keep-Alive:
+      - timeout=3, max=100
+      Server:
+      - Apache
+      Transfer-Encoding:
+      - chunked
+    status:
+      code: 200
+      message: OK
+version: 1
