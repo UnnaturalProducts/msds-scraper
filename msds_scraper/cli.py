@@ -34,7 +34,7 @@ def main(
         resolve_path=True,
     ),
     bad_cas_output: Path = typer.Option(
-        Path("./bas-cas.csv"),
+        Path("./bad-cas.csv"),
         resolve_path=True,
         help="File path output of text file containing cas numbers which failed to return a msds.",
     ),
