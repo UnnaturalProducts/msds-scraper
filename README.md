@@ -55,6 +55,18 @@ pytest
 pytest --record_mode=once
 ```
 
+#### Production Build
+
+To build a windows executable for distribution you will also need a Windows machine with python3.8 installed.
+
+Then in your dev environment setup with poetry:
+
+```cmd
+pyinstaller .\msds_scraper\cli.py -F -n msds-scraper
+```
+
+This will create the file `.\dist\msds-scraper.exe` which should be upload to the latest stable GitHub Release.
+
 ### CLI
 
 Check out the complete documentation with

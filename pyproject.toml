@@ -8,7 +8,7 @@ authors = ["Unnatural Products Inc."]
 msds-scraper = "msds_scraper.cli:app"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.8,<3.11"
 beautifulsoup4 = "^4.11.1"
 requests = "^2.28.1"
 pandas = "^1.4.3"
@@ -24,6 +24,7 @@ black = "^22.6.0"
 isort = "^5.10.1"
 ipykernel = "^6.15.1"
 atomicwrites = "^1.4.1"
+pyinstaller = "^5.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
