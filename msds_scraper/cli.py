@@ -52,7 +52,7 @@ def main(
         help="File path output of text file containing cas numbers which failed to return a msds.",
     ),
     workers: int = typer.Option(
-        -1, "--workers", "-w", help="Number of worker for multi-threading"
+        1, "--workers", "-w", help="Number of worker for multi-threading (Not supported on Windows)"
     ),
     verbose: bool = typer.Option(True, help="Toggle progress output"),
 ):
