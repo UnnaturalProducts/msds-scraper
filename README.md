@@ -25,6 +25,7 @@ you'll need the full path to run the program.
 
 This does require you have [Python 3.8](https://www.python.org/downloads/)
 installed on your machine and on your system Path. (_IMPORTANT_: Select the __Select the 'add to path' option.__ during installation).
+_Note: initial testing suggests that a Python installation may not be needed._
 
 After this, simply download the latest release executable for the [GitHub releases](https://github.com/UnnaturalProducts/msds-scraper/releases) 
 and you should be good to go.
