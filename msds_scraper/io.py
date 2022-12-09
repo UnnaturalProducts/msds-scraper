@@ -10,6 +10,7 @@ def remove_old_msds(old_cas: List[str], output_path: Path):
     for cas in old_cas:
         fpath = output_path / f"{cas}.pdf"
         if fpath.exists():
+            print(f"Removing {fpath}")
             fpath.unlink()
         else:
             print(f"Error: {fpath} does not exist")
