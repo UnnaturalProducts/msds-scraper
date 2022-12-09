@@ -8,6 +8,7 @@ HERE = Path(__file__).parent
 def mock_unlink(*args):
     return
 
+
 def test_remove_old_msds(capsys, monkeypatch):
     monkeypatch.setattr(Path, "unlink", mock_unlink)
     output_dir = HERE / "data" / "msds_output"
@@ -15,7 +16,7 @@ def test_remove_old_msds(capsys, monkeypatch):
     io.remove_old_msds(to_delete, output_dir)
     captured = capsys.readouterr()
     expected = "Removing /home/jvansan/projects/unp/msds-scraper/tests/data/msds_output/109-99-9.pdf"
-    assert captured.out.strip() == expected 
+    assert captured.out.strip() == expected
 
 
 def test_remove_old_msds_missing_error(capsys, monkeypatch):
@@ -25,7 +26,7 @@ def test_remove_old_msds_missing_error(capsys, monkeypatch):
     io.remove_old_msds(to_delete, output_dir)
     captured = capsys.readouterr()
     expected = "Error: /home/jvansan/projects/unp/msds-scraper/tests/data/msds_output/109-99-X.pdf does not exist"
-    assert captured.out.strip() == expected 
+    assert captured.out.strip() == expected
 
 
 def test_get_current_msds_casnos():

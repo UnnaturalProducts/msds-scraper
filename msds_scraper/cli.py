@@ -1,9 +1,9 @@
 from pathlib import Path
 from typing import Callable, Optional
-from rich.progress import track
 
 import typer
 from joblib import Parallel, delayed
+from rich.progress import track
 
 from msds_scraper import combiblocks, fischer, io
 
@@ -53,7 +53,10 @@ def main(
         help="File path output of text file containing cas numbers which failed to return a msds.",
     ),
     workers: int = typer.Option(
-        1, "--workers", "-w", help="Number of worker for multi-threading (Not supported on Windows)"
+        1,
+        "--workers",
+        "-w",
+        help="Number of worker for multi-threading (Not supported on Windows)",
     ),
     verbose: bool = typer.Option(True, help="Toggle progress output"),
 ):
@@ -93,7 +96,7 @@ def main(
     )
     cas_iter = new_casnos
     if verbose:
-        cas_iter =  track(new_casnos, description="Getting MSDS for CAS...")
+        cas_iter = track(new_casnos, description="Getting MSDS for CAS...")
     if workers == 1:
         results = [get_cas(cas, msds_directory) for cas in cas_iter]
     else:
