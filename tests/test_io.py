@@ -1,4 +1,5 @@
 from pathlib import Path
+
 from msds_scraper import io
 
 HERE = Path(__file__).parent

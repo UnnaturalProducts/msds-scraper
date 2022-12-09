@@ -1,6 +1,7 @@
 from http import HTTPStatus
 from pathlib import Path
 from typing import Dict, Optional
+
 import bs4
 import requests
 

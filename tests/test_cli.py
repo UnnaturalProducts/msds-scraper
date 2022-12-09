@@ -1,10 +1,11 @@
 import shlex
 from pathlib import Path
-from black import out
 
 import pytest
-from msds_scraper import cli
+from black import out
 from typer.testing import CliRunner
+
+from msds_scraper import cli
 
 runner = CliRunner()
 

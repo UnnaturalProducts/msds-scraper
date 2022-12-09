@@ -1,8 +1,9 @@
 from http import HTTPStatus
 from pathlib import Path
-import magic
 
+import magic
 import pytest
+
 from msds_scraper import fischer
 
 GOOD_CAS = "50-00-0"

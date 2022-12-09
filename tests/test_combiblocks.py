@@ -1,8 +1,9 @@
 from pathlib import Path
+
 import bs4
 import magic
-
 import pytest
+
 from msds_scraper import combiblocks
 
 GOOD_CAS = "1758-46-9"

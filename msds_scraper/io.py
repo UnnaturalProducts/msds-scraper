@@ -26,8 +26,6 @@ def write_bad_cas(bad_cas_list: List[str], output_path: Path):
 
 
 # Taken from unpdash-django
-
-
 def read_xlsx(path, header=0, lower_cols=True) -> List[Tuple[str, pd.DataFrame]]:
     """Read in xlsx and return list of tuple with all sheets -> dataframe"""
     sp = pd.read_excel(path, sheet_name=None, header=header)

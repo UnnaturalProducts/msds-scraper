@@ -1,5 +1,6 @@
 from pathlib import Path
 from typing import Callable, Optional
+from rich.progress import track
 
 import typer
 from joblib import Parallel, delayed
@@ -80,13 +81,25 @@ def main(
     casnos = set(df["substance cas"].values)
     known_casnos = set(io.get_current_msds_casnos(msds_directory))
     new_casnos = [cas for cas in (casnos - known_casnos) if cas is not None]  # set math
+    old_casnos = [cas for cas in (known_casnos - casnos) if cas is not None]
+
+    typer.echo(
+        f"Found {len(old_casnos)} old CAS to query - removing files from {msds_directory}"
+    )
+    io.remove_old_msds(old_casnos, msds_directory)
+
     typer.echo(
         f"Found {len(new_casnos)} new CAS to query - writing files to {msds_directory}"
     )
-
-    results = Parallel(n_jobs=workers, verbose=10 if verbose else 0)(
-        delayed(get_cas)(cas, msds_directory) for cas in new_casnos
-    )
+    cas_iter = new_casnos
+    if verbose:
+        cas_iter =  track(new_casnos, description="Getting MSDS for CAS...")
+    if workers == 1:
+        results = [get_cas(cas, msds_directory) for cas in cas_iter]
+    else:
+        results = Parallel(n_jobs=workers, verbose=0)(
+            delayed(get_cas)(cas, msds_directory) for cas in cas_iter
+        )
     bad_casnos = list(filter(lambda x: x is not None, results))
 
     typer.echo(f"Found {len(bad_casnos)} bad CAS - writing to {bad_cas_output}")
