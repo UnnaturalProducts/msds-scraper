@@ -53,7 +53,6 @@ def test_cli_workers(tmp_path, monkeypatch):
     assert output.exit_code == 0
     assert "Found 3 new CAS to query" in output.stdout
     assert "Found 1 bad CAS" in output.stdout
-    assert "n_jobs=2" in output.stdout
     assert bad_cas_output.exists()
     assert pdf_output.exists()
     # make sure monkeypatching worked
