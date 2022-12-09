@@ -2,8 +2,17 @@ from os import PathLike
 from pathlib import Path
 from typing import List, Tuple
 
-import pandas as pd
 import numpy as np
+import pandas as pd
+
+
+def remove_old_msds(old_cas: List[str], output_path: Path):
+    for cas in old_cas:
+        fpath = output_path / f"{cas}.pdf"
+        if fpath.exists():
+            fpath.unlink()
+        else:
+            print(f"Error: {fpath} does not exist")
 
 
 def get_current_msds_casnos(path: PathLike) -> List[str]:
