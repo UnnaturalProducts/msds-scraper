@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "msds-scraper"
-version = "1.0.2"
+version = "1.1.0"
 description = "Tool for scraping material safety datasheets"
 authors = ["Unnatural Products Inc."]
 
