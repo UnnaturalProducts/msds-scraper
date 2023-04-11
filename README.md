@@ -17,7 +17,7 @@ Example:
 msds-scraper /path/to/UNP_Inventory.xlsx /path/to/msds_directory/msds.pdfs
 ```
 
-### Installation
+## Installation
 
 A windows executable of the `msds-scraper.exe` is available for distribution and does not require the
 creation or activation of a virtual environment. Put this executable somewhere you remember because
@@ -36,7 +36,7 @@ To run the program, open up a cmd or powershell window on your machine and run t
 .\path\to\msds-scraper.exe .\path\to\Inventory.xslx .\path\to\pdf\output\directory\
 ```
 
-### Development
+## Development
 
 Using Python Poetry:
 
@@ -56,7 +56,7 @@ pytest
 pytest --record_mode=once
 ```
 
-#### Production Build
+## Production Build
 
 To build a windows executable for distribution you will also need a Windows machine with python3.8 installed.
 
@@ -68,7 +68,7 @@ pyinstaller .\msds_scraper\cli.py -F -n msds-scraper
 
 This will create the file `.\dist\msds-scraper.exe` which should be upload to the latest stable GitHub Release.
 
-### CLI
+## CLI
 
 Check out the complete documentation with
 
@@ -83,3 +83,33 @@ msds-scraper /path/to/your/UNP_Inventory.xlsx /path/to/your/dirctory/with/msds.p
 ```
 
 There are example files in the `./tests/data` directory.
+
+## Linux Usage
+
+This tool works cross platform. Running the CLI has the advantage of using the
+Google Drive client to sync. On Linux a couple extra steps can be taken to make
+usage easier.
+
+First, use rclone to mount the Google Drive. You will need to configure the clone following instruction [here](https://rclone.org/drive/). This requires read+write for the UNP Core Shared Drive. Client name is `gdrive` and the mount point is `data` here.
+
+```bash
+rclone -v --vfs-cache-mode writes mount "gdrive:Operations/Laboratory Operations/Inventory MSDS" "data"
+```
+
+Then, you can run the CLI as normal in a second terminal. Ex.
+
+```bash
+poetry shell
+cd data/2023_Inventory/March_2023_Inventory
+msds-scraper ./ChemInventoryMarch23.xlsx ./March_2023_MSDS
+```
+
+Once finished, monthly MSDS should also be copied to the `All_MSDS` folder. This is can be done using `rsync`. Ex.
+
+```bash
+# switch to data root
+cd ..\..
+rsync -avz --progress --ignore-existing ./2023_Inventory/March_2023_Inventory/March_2023_MSDS/*.pdf ./All_MSDS/
+```
+
+Wait for the rclone sync to finish and then you can cancel the rclone mount (`ctrl+c`).
