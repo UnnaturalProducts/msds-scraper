@@ -15,8 +15,12 @@ def test_remove_old_msds(capsys, monkeypatch):
     to_delete = ["109-99-9"]
     io.remove_old_msds(to_delete, output_dir)
     captured = capsys.readouterr()
-    expected = "Removing /home/jvansan/projects/unp/msds-scraper/tests/data/msds_output/109-99-9.pdf"
-    assert captured.out.strip() == expected
+    expected_1, expected_2 = (
+        "Removing",
+        "msds-scraper/tests/data/msds_output/109-99-9.pdf",
+    )
+    assert expected_1 in captured.out
+    assert expected_2 in captured.out
 
 
 def test_remove_old_msds_missing_error(capsys, monkeypatch):
@@ -25,8 +29,12 @@ def test_remove_old_msds_missing_error(capsys, monkeypatch):
     to_delete = ["109-99-X"]
     io.remove_old_msds(to_delete, output_dir)
     captured = capsys.readouterr()
-    expected = "Error: /home/jvansan/projects/unp/msds-scraper/tests/data/msds_output/109-99-X.pdf does not exist"
-    assert captured.out.strip() == expected
+    expected_1, expected_2 = (
+        "Error:",
+        "msds-scraper/tests/data/msds_output/109-99-X.pdf does not exist",
+    )
+    assert expected_1 in captured.out
+    assert expected_2 in captured.out
 
 
 def test_get_current_msds_casnos():

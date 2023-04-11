@@ -2,7 +2,6 @@ import shlex
 from pathlib import Path
 
 import pytest
-from black import out
 from typer.testing import CliRunner
 
 from msds_scraper import cli
