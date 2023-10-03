@@ -41,7 +41,7 @@ To run the program, open up a cmd or powershell window on your machine and run t
 Using Python Poetry:
 
 ```bash
-git clone https://github.com/UnnaturalProducts/msds-scraper.git
+git clone git@github.com:UnnaturalProducts/msds-scraper.git
 cd msds-scraper
 poetry install
 poetry shell
