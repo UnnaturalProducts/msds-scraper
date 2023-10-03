@@ -96,7 +96,20 @@ First, use rclone to mount the Google Drive. You will need to configure the clon
 rclone -v --vfs-cache-mode writes mount "gdrive:Operations/Laboratory Operations/Inventory MSDS" "data"
 ```
 
-Then, you can run the CLI as normal in a second terminal. Ex.
+Check and see if you are infact mounted in a second terminal
+```bash
+ls data/2023_Inventory
+```
+If there is no output, check to make sure that your root_folder_id matches UNP Core's root folder id. You can find it 
+in the url of the root folder: `0ALC9N0phLt1LUk9PVA`.
+
+
+Then set this in your rclone config file by adding the line `root_folder_id = 0ALC9N0phLt1LUk9PVA`
+
+Try again.
+
+
+Once connected you can run the CLI as normal in a second terminal. Ex.
 
 ```bash
 poetry shell
