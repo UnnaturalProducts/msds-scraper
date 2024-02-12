@@ -7,7 +7,7 @@ import pytest
 from msds_scraper import fischer
 
 GOOD_CAS = "50-00-0"
-BAD_CAS = "0000X-00-00"
+BAD_CAS = "OBVIOISLY-FAKE-CAS"
 
 
 @pytest.mark.vcr
