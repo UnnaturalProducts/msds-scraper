@@ -49,11 +49,17 @@ poetry shell
 
 To run the tests ([see here for VCR options](https://vcrpy.readthedocs.io/en/latest/usage.html#record-modes)):
 
+You may need to install `libmagic` for the `python-magic` package to work. On Ubuntu this can be done with `sudo apt-get install libmagic1`.
+On macOS this can be done with `brew install libmagic`.
+
+__NOTE__ tests are currently failing if you use VCR for some reason? This is a known issue and will be fixed later. For
+now just run the tests without VCR by including `--vcr-record=all` in the command to fetch new data.
+
 ```bash
 pytest
 
 # If you added new tests or changed a test which interacts with VCR add the `--record-mode` flag: eg.
-pytest --record_mode=once
+pytest --record-mode=once
 ```
 
 ## Production Build
