@@ -8,7 +8,7 @@ authors = ["Unnatural Products Inc."]
 msds-scraper = "msds_scraper.cli:app"
 
 [tool.poetry.dependencies]
-python = ">=3.8,<3.11"
+python = ">=3.8,<3.13"
 beautifulsoup4 = "^4.11.1"
 requests = "^2.28.1"
 pandas = "^1.4.3"
@@ -17,7 +17,7 @@ openpyxl = "^3.0.10"
 joblib = "^1.1.0"
 rich = "^12.6.0"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = "^7.1.2"
 pytest-recording = "^0.12.1"
 python-magic = "^0.4.27"
