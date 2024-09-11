@@ -92,6 +92,9 @@ There are example files in the `./tests/data` directory.
 
 ## Linux Usage
 
+On macOS this is simplified by the fact that the Google Drive client is available and you can do the same
+steps but skip all the rclone details.
+
 This tool works cross platform. Running the CLI has the advantage of using the
 Google Drive client to sync. On Linux a couple extra steps can be taken to make
 usage easier.
@@ -103,17 +106,17 @@ rclone -v --vfs-cache-mode writes mount "gdrive:Operations/Laboratory Operations
 ```
 
 Check and see if you are infact mounted in a second terminal
+
 ```bash
 ls data/2023_Inventory
 ```
-If there is no output, check to make sure that your root_folder_id matches UNP Core's root folder id. You can find it 
-in the url of the root folder: `0ALC9N0phLt1LUk9PVA`.
 
+If there is no output, check to make sure that your root_folder_id matches UNP Core's root folder id. You can find it
+in the url of the root folder: `0ALC9N0phLt1LUk9PVA`.
 
 Then set this in your rclone config file by adding the line `root_folder_id = 0ALC9N0phLt1LUk9PVA`
 
 Try again.
-
 
 Once connected you can run the CLI as normal in a second terminal. Ex.
 
@@ -128,7 +131,10 @@ Once finished, monthly MSDS should also be copied to the `All_MSDS` folder. This
 ```bash
 # switch to data root
 cd ..\..
+# a specific month
 rsync -avz --progress --ignore-existing ./2023_Inventory/March_2023_Inventory/March_2023_MSDS/*.pdf ./All_MSDS/
+# all months
+rsync -avz --progress --ignore-existing ./2024_Inventory/2024_*_Inventory/*_MSDS/*.pdf ./All_MSDS/
 ```
 
 Wait for the rclone sync to finish and then you can cancel the rclone mount (`ctrl+c`).
