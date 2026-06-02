@@ -1,12 +1,19 @@
 # msds-scraper
 
-Tool for scraping material saftey datasheets from fishersci and combiblocks.
+Tool for scraping material saftey datasheets from fishersci and combiblocks, falling back to PubChem.
 
 This repository contains a script that inputs a .xlsx file which at a minimum has a named 'Substance CAS'.
 The script also takes the a path to a directory of already obtained material datasheets, `msds_directory`.
 For each substance CAS it checks for an already exisiting material datasheets in the msds directory.
-If it doesn't find an existing material datasheet it checks the fishsci website and attempts
-to download the .pdf to the given directory.
+If it doesn't find an existing material datasheet it queries each source in priority order and downloads
+the `.pdf` to the given directory:
+
+1. **Fisher Scientific** — direct supplier SDS.
+2. **Combi-Blocks** — direct supplier SDS.
+3. **PubChem LCSS** (fallback) — when no supplier SDS is found, the PubChem Laboratory Chemical Safety
+   Summary datasheet is rendered to PDF via headless Chromium (PubChem's recommended print → save-as-PDF
+   flow). This is a generated summary, not a supplier SDS, so it runs last. Requires a one-time
+   `playwright install chromium` (see Setup).
 
 It also creates a log file `./bad-cas.csv` which warns about any CAS number where it couldn't find a file in the same directory the
 script is executed, or you can specify a path and filename for the log file.
@@ -75,7 +82,17 @@ Using Python Poetry:
 git clone git@github.com:UnnaturalProducts/msds-scraper.git
 cd msds-scraper
 poetry install
+poetry run playwright install chromium   # one-time: browser for the PubChem LCSS fallback
 poetry shell
+```
+
+Or simply run `make install`, which does both steps.
+
+The PubChem LCSS fallback renders pages with a headless Chromium managed by
+[Playwright](https://playwright.dev/python/). You can sanity-check the render against a single CAS with:
+
+```bash
+poetry run python scripts/smoke_pubchem_lcss.py 50-00-0   # writes ./run/50-00-0.pdf
 ```
 
 To run the tests ([see here for VCR options](https://vcrpy.readthedocs.io/en/latest/usage.html#record-modes)):
