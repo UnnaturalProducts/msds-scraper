@@ -975,6 +975,21 @@ files = [
 ]
 
 [[package]]
+name = "pubchempy"
+version = "1.0.5"
+description = "A simple Python wrapper around the PubChem PUG REST API."
+optional = false
+python-versions = ">=3.10"
+files = [
+    {file = "pubchempy-1.0.5-py3-none-any.whl", hash = "sha256:e936cfed31fa194042ad463be3c803dde5b12ef2f795caf336e3114127c34fa0"},
+    {file = "pubchempy-1.0.5.tar.gz", hash = "sha256:08f0b2a82a5caa5d61e14935d655da554602d7b5686fe661ab584c882ffff623"},
+]
+
+[package.extras]
+pandas = ["pandas (>=0.16.2)"]
+ssl = ["certifi (>=2025.7.14)"]
+
+[[package]]
 name = "pure-eval"
 version = "0.2.3"
 description = "Safely evaluate AST nodes without side effects"
@@ -1619,4 +1634,4 @@ dev = ["pytest", "setuptools"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<3.14"
-content-hash = "964db58d16d55baaf2d7f305ff5d0bbf077ab6aafdd6b0bfcac38cbc728cd6f9"
+content-hash = "b348ab73c76f7f1b65cbb9e40c752c8afc7027ce9d0f7cafcf04175ed1b7e572"

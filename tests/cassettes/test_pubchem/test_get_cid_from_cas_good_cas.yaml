@@ -1,0 +1,62 @@
+interactions:
+- request:
+    body: name=50-00-0
+    headers:
+      Connection:
+      - close
+      Content-Length:
+      - '12'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Host:
+      - pubchem.ncbi.nlm.nih.gov
+      User-Agent:
+      - Python-urllib/3.13
+    method: POST
+    uri: https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/cids/JSON
+  response:
+    body:
+      string: "{\n  \"IdentifierList\": {\n    \"CID\": [\n      712\n    ]\n  }\n}\n"
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - private
+      Connection:
+      - close
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 02 Jun 2026 18:44:41 GMT
+      Expires:
+      - Tue, 02 Jun 2026 19:44:41 GMT
+      NCBI-PHID:
+      - 90C60D19A1F249910000000000000001.m_1
+      NCBI-SID:
+      - 90C60D19A1F24991_0000SID
+      Referrer-Policy:
+      - origin-when-cross-origin
+      Server:
+      - Apache
+      Set-Cookie:
+      - ncbi_sid=90C60D19A1F24991_0000SID; domain=.nih.gov; path=/; expires=Wed, 02
+        Jun 2027 18:44:41 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Throttling-Control:
+      - 'Request Count status: Green (0%), Request Time status: Green (0%), Service
+        status: Green (37%)'
+      X-UA-Compatible:
+      - IE=Edge
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
