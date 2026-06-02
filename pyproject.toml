@@ -17,6 +17,7 @@ openpyxl = "^3.1"
 joblib = "^1.5"
 rich = "^15.0"
 pubchempy = "^1.0.4"
+playwright = "^1.60.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0"

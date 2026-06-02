@@ -5,7 +5,7 @@ import typer
 from joblib import Parallel, delayed
 from rich.progress import track
 
-from msds_scraper import combiblocks, fischer, io
+from msds_scraper import combiblocks, fischer, io, pubchem
 
 app = typer.Typer()
 
@@ -26,7 +26,7 @@ def get_cas(cas: str, ouput_dir: Path) -> Optional[str]:
     """
     result = False
     # if result is True, retrieval succeeded
-    methods = (fischer.get_cas_pdf, combiblocks.get_cas_pdf)
+    methods = (fischer.get_cas_pdf, combiblocks.get_cas_pdf, pubchem.get_cas_pdf)
     for get_method in methods:
         result = _try_get_cas(get_method, cas, ouput_dir)
         if result is True:
