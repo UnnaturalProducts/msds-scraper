@@ -2,7 +2,6 @@ from os import PathLike
 from pathlib import Path
 from typing import List, Tuple
 
-import numpy as np
 import pandas as pd
 
 
@@ -58,16 +57,19 @@ def strip_df_strings(contents):
 
 
 def sanitize_df(df: pd.DataFrame, lower_cols=True) -> pd.DataFrame:
-    df.dropna(how="all", axis="index", inplace=True)
-    df.replace({np.nan: None}, inplace=True)
+    df = df.dropna(how="all", axis="index")
 
     ghost_columns = [
         col_name
         for col_name in df.columns
         if isinstance(col_name, str) and "Unnamed:" in col_name
     ]
+    df = df.drop(ghost_columns, axis=1)
 
-    df.drop(ghost_columns, axis=1, inplace=True)
+    # Convert NaN -> None so downstream `is not None` checks work. pandas 3.0
+    # removed silent downcasting in replace(), so cast to object and mask.
+    df = df.astype(object).where(df.notna(), None)
+
     if lower_cols:
         df.columns = [col.lower() for col in df.columns]
 

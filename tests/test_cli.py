@@ -31,8 +31,8 @@ def test_cli(tmp_path):
     # compare to expected
     with bad_cas_output.open() as out_f:
         with expected_bad_cas.open() as e_f:
-            for l in out_f:
-                assert e_f.readline() == l
+            for line in out_f:
+                assert e_f.readline() == line
 
 
 def mock_get_cas(cas, *args, **kwargs):

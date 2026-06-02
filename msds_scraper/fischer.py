@@ -32,9 +32,9 @@ def get_cas_pdf(cas: str, output_dir: Path) -> Path:
     pdf_path = get_fischer_msds_link(cas)
     assert pdf_path is not None, f"CAS = {cas} not found on Fischer"
     r = _get_fischer(pdf_path)
-    assert (
-        r.status_code == HTTPStatus.OK
-    ), f"Could not get PDF for CAS = {cas} from Fischer\nResponse:\t{r.content.decode()}"
+    assert r.status_code == HTTPStatus.OK, (
+        f"Could not get PDF for CAS = {cas} from Fischer\nResponse:\t{r.content.decode()}"
+    )
     assert is_pdf_content(r), "Response from Fischer is not PDF content"
     output_path = output_dir.joinpath(f"{cas}.pdf")
     with output_path.open("wb") as f:
