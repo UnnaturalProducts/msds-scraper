@@ -1,10 +1,9 @@
 from http import HTTPStatus
 from pathlib import Path
 
-import magic
 import pytest
 
-from msds_scraper import fischer
+from msds_scraper import fischer, utils
 
 GOOD_CAS = "50-00-0"
 BAD_CAS = "OBVIOISLY-FAKE-CAS"
@@ -54,8 +53,7 @@ def test_get_cas_pdf_good_cas(tmp_path: Path):
     output_path = fischer.get_cas_pdf(GOOD_CAS, tmp_path)
     assert output_path.exists()
     # check it's actually a pdf
-    f = magic.from_file(output_path)
-    assert "PDF document" in f
+    assert utils.is_pdf_file(output_path)
 
 
 @pytest.mark.vcr

@@ -31,4 +31,4 @@ A small Typer CLI (`msds-scraper`) that reconciles an inventory `.xlsx` against 
 - **`cli.get_cas` has inverted return semantics**: returns `None` on success, returns the CAS string on total failure. The CLI collects the non-`None` results as the bad-CAS list.
 - **`--workers` > 1 is not supported on Windows** (joblib). The shipped `.exe` must run single-threaded.
 - **VCR replay is currently flaky** (known issue): if a network test fails on replay, re-run with `--vcr-record=all` to hit live sites, or `--record-mode=once` to record only missing cassettes. Cassettes live in `tests/cassettes/<test_module>/`, fixtures in `tests/data/`.
-- **`python-magic` (dev dep) needs system `libmagic`**: `brew install libmagic` (macOS) / `sudo apt-get install libmagic1` (Ubuntu).
+- **The PubChem LCSS source needs a Chromium browser**: run `playwright install chromium` once (or `make install`). The render is not unit-tested (browser traffic isn't VCR-able); use `scripts/smoke_pubchem_lcss.py` to verify it manually.

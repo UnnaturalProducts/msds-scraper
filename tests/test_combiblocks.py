@@ -1,10 +1,9 @@
 from pathlib import Path
 
 import bs4
-import magic
 import pytest
 
-from msds_scraper import combiblocks
+from msds_scraper import combiblocks, utils
 
 GOOD_CAS = "1758-46-9"
 BAD_CAS = "0000X-00-00"
@@ -41,8 +40,7 @@ def test_get_cas_pdf_good_cas(tmp_path: Path):
     output_path = combiblocks.get_cas_pdf(GOOD_CAS, tmp_path)
     assert output_path.exists()
     # check it's actually a pdf
-    f = magic.from_file(output_path)
-    assert "PDF document" in f
+    assert utils.is_pdf_file(output_path)
 
 
 @pytest.mark.vcr
