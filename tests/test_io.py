@@ -116,5 +116,5 @@ def test_write_bad_cas(tmp_path: Path):
     io.write_bad_cas(bad_casses, output_path)
     assert output_path.exists()
     with output_path.open() as f:
-        for idx, l in enumerate(f):
-            assert bad_casses[idx] == l.strip()
+        for idx, line in enumerate(f):
+            assert bad_casses[idx] == line.strip()

@@ -74,9 +74,9 @@ def main(
     msds-scraper /path/to/your/UNP_Inventory.xlsx /path/to/your/MSDS_DIRCTORY
     """
     df = io.read_xlsx_sheet(input)
-    assert (
-        "substance cas" in df.columns
-    ), "Input Excel file missing `Substance CAS` column"
+    assert "substance cas" in df.columns, (
+        "Input Excel file missing `Substance CAS` column"
+    )
     if not msds_directory.is_dir():
         typer.echo(f"Creating output directory - {msds_directory}")
         msds_directory.mkdir()

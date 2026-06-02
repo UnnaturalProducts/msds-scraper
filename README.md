@@ -67,26 +67,7 @@ Once connected you can run the CLI as normal in a second terminal (as described 
 
 Wait for the rclone sync to finish and then you can cancel the rclone mount (`ctrl+c`).
 
-## Installation
-
-A windows executable of the `msds-scraper.exe` is available for distribution and does not require the
-creation or activation of a virtual environment. Put this executable somewhere you remember because
-you'll need the full path to run the program.
-
-This does require you have [Python 3.8](https://www.python.org/downloads/)
-installed on your machine and on your system Path. (_IMPORTANT_: Select the __Select the 'add to path' option.__ during installation).
-_Note: initial testing suggests that a Python installation may not be needed._
-
-After this, simply download the latest release executable for the [GitHub releases](https://github.com/UnnaturalProducts/msds-scraper/releases) 
-and you should be good to go.
-
-To run the program, open up a cmd or powershell window on your machine and run the following:
-
-```cmd
-.\path\to\msds-scraper.exe .\path\to\Inventory.xslx .\path\to\pdf\output\directory\
-```
-
-## Development
+## Setup
 
 Using Python Poetry:
 
@@ -111,15 +92,3 @@ pytest
 # If you added new tests or changed a test which interacts with VCR add the `--record-mode` flag: eg.
 pytest --record-mode=once
 ```
-
-## Production Build
-
-To build a windows executable for distribution you will also need a Windows machine with python3.8 installed.
-
-Then in your dev environment setup with poetry:
-
-```cmd
-pyinstaller .\msds_scraper\cli.py -F -n msds-scraper
-```
-
-This will create the file `.\dist\msds-scraper.exe` which should be upload to the latest stable GitHub Release.

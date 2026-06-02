@@ -41,9 +41,9 @@ def get_cas_pdf(cas: str, output_dir: Path) -> Path:
     assert cat_id is not None, f"Could not find CAS = {cas} from Combi-Blocks"
     pdf_path = f"https://www.combi-blocks.com/msds/{cat_id}.pdf"
     r = requests.get(pdf_path, headers=DEFAULT_HEADERS)
-    assert (
-        r.status_code == HTTPStatus.OK
-    ), f"Could not get PDF for CAS = {cas} from Combi-Blocks\nResponse:\t{r.content.decode()}"
+    assert r.status_code == HTTPStatus.OK, (
+        f"Could not get PDF for CAS = {cas} from Combi-Blocks\nResponse:\t{r.content.decode()}"
+    )
     assert is_pdf_content(r), "Response from Combi-Blocks is not PDF content"
     output_path = output_dir.joinpath(f"{cas}.pdf")
     with output_path.open("wb") as f:
