@@ -75,3 +75,23 @@ def test_cli_no_verbose(tmp_path, monkeypatch):
     assert pdf_output.exists()
     # make sure monkeypatching worked
     assert len(list(pdf_output.glob("*.pdf"))) == 0
+
+
+@pytest.mark.parametrize(
+    ("cas", "kept"),
+    [
+        ("109-99-9", True),
+        ("1159680-21-3", False),  # a different chemical's SDS
+        ("9-99-9", False),  # substring of 109-99-9
+    ],
+)
+def test_try_get_cas_rejects_wrong_sds(tmp_path, cas, kept):
+    fixture = HERE / "data" / "msds_output" / "109-99-9.pdf"
+
+    def fake_source(cas, output_dir):
+        path = output_dir / f"{cas}.pdf"
+        path.write_bytes(fixture.read_bytes())
+        return path
+
+    assert cli._try_get_cas(fake_source, cas, tmp_path) is kept
+    assert (tmp_path / f"{cas}.pdf").exists() is kept

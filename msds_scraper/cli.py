@@ -1,21 +1,39 @@
+import re
 from pathlib import Path
 from typing import Callable, Optional
 
 import typer
 from joblib import Parallel, delayed
+from pypdf import PdfReader
 from rich.progress import track
 
 from msds_scraper import combiblocks, fischer, io, pubchem
 
 app = typer.Typer()
 
+DASHES = str.maketrans("‐‑‒–—", "-----")
+
+
+def _mentions_cas(pdf: Path, cas: str) -> bool:
+    try:
+        text = " ".join(p.extract_text() or "" for p in PdfReader(pdf).pages)
+    except Exception:
+        return False
+    pattern = rf"(?<!\d){re.escape(cas)}(?!\d)"
+    return re.search(pattern, text.translate(DASHES)) is not None
+
 
 def _try_get_cas(method: Callable, cas: str, output_dir: Path) -> bool:
     try:
-        method(cas, output_dir)
-        return True
+        path = method(cas, output_dir)
     except AssertionError:
         return False
+    # Vendor searches are fuzzy (Fisher returns its first hit for any keyword),
+    # so a downloaded SDS only counts if it names the requested CAS.
+    if _mentions_cas(path, cas):
+        return True
+    path.unlink(missing_ok=True)
+    return False
 
 
 def get_cas(cas: str, ouput_dir: Path) -> Optional[str]:
